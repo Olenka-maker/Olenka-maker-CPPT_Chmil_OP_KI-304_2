@@ -1,23 +1,64 @@
+import os
+import struct
 import sys
+import math
 
-# Введення розміру трикутника
-rows_num = int(input("Введіть розмір трикутника (висота): "))
-lst = []
+def writeResTxt(fName, result):
+    with open(fName, 'w') as f:
+        f.write(str(result))
 
-# Введення символу-заповнювача
-filler = input("Введіть символ-заповнювач: ")
 
-# Перевірка на кількість символів-заповнювачів
-if len(filler) != 1:
-    if len(filler) == 0:
-        print("Не введено символ-заповнювач")
-    else:
-        print("Забагато символів-заповнювачів")
-    sys.exit(1)
+def readResTxt(fName):
+    result = 0.0
+    try:
+        if os.path.exists(fName):
+            with open(fName, 'r') as f:
+                result = float(f.read())
+        else:
+            raise FileNotFoundError(f"File {fName} not found.")
+    except FileNotFoundError as e:
+        print(e)
+    return result
 
-# Створення та виведення трикутника, що дивиться вправо
-for i in range(1, rows_num + 1):
-    # Виведення пробілів для центрування зліва
-    print(" " * (rows_num - i), end="")
-    # Виведення символів
-    print((filler + " ") * i)
+
+def writeResBin(fName, result):
+    with open(fName, 'wb') as f:
+        
+        f.write(struct.pack('f', result))
+
+
+def readResBin(fName):
+    result = 0.0
+    try:
+        if os.path.exists(fName):
+            with open(fName, 'rb') as f:
+               
+                result = struct.unpack('f', f.read())[0]
+        else:
+            raise FileNotFoundError(f"File {fName} not found.")
+    except FileNotFoundError as e:
+        print(e)
+    return result
+
+
+def calculate(x):
+   
+    return 1 / math.tan(2 * x)
+
+if __name__ == "__main__":
+   
+    data = float(input("Enter value for x: "))
+    result = calculate(data)
+    print(f"Result is: {result}")
+
+    try:
+        
+        writeResTxt("textRes.txt", result)
+        writeResBin("binRes.bin", result)
+        
+       
+        print("Result from binRes.bin: {0}".format(readResBin("binRes.bin")))
+        print("Result from textRes.txt: {0}".format(readResTxt("textRes.txt")))
+    except FileNotFoundError as e:
+        print(e)
+        sys.exit(1)
