@@ -37,6 +37,9 @@ public class Lamp {
         this.location = location;
     }
 
+
+
+
     private void logAction(String message) {
         try {
 
