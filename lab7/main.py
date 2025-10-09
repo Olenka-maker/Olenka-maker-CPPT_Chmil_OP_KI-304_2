@@ -1,6 +1,7 @@
 try:
     n = int(input("Enter size: "))  
     symbol = input("Enter character: ")
+  
 
 
     matrix = [[' ' for _ in range(n)] for _ in range(n)]
@@ -10,11 +11,14 @@ try:
             if i <= j and i + j >= n - 1:
                 matrix[i][j] = symbol
 
+
     print("Array:")
     for row in matrix:
         print(" ".join(row))
+        
+        
 
-  
+    
     try:
         with open("output.txt", "w") as writer:
             for row in matrix:
@@ -24,3 +28,5 @@ try:
         print("Error!!!!")
 except ValueError:
     print("Invalid input! Please enter a valid integer for the size.")
+
+
