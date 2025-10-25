@@ -1,7 +1,6 @@
 package lab3;
 
 public class SmartLamp extends Lamp implements Switchable {
-
     private int brightness; 
 
     public SmartLamp() {
@@ -26,7 +25,7 @@ public class SmartLamp extends Lamp implements Switchable {
         return brightness;
     }
 
-    @Override
+    @Override 
     public void showAttributes() {
         logAction("showAttributes()");
         System.out.println("============== SMART LAMP ==============");
@@ -39,7 +38,8 @@ public class SmartLamp extends Lamp implements Switchable {
         System.out.println("========================================\n");
     }
 
-    @Override
+    @Override 
+    //це анотація (annotation) в Java, яка вказує, що метод у підкласі перевизначає (перезаписує) метод батьківського класу або інтерфейсу.
     public void turnOn() {
         if (!on) {
             on = true;

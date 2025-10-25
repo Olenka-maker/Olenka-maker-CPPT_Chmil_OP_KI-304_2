@@ -1,13 +1,14 @@
-package lab3;
+package lab3; 
 
-public class Main {
-    public static void main(String[] args) {
+public class Main { 
+        public static void main(String[] args) {
 
         SmartLamp l1 = new SmartLamp();
         l1.showAttributes();
 
         
         SmartLamp l2 = new SmartLamp("LED Lamp", "LED", 12, "Kitchen", 70);
+        
         l2.showAttributes();
 
         
